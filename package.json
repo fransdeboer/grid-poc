@@ -1,0 +1,25 @@
+{
+  "name": "grid-poc",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@magister/shell": "^0.0.0-20240626094230",
+    "@oddbird/popover-polyfill": "^0.4.4",
+    "@open-wc/scoped-elements": "^3.0.5",
+    "@sl-design-system/button": "^1.0.2",    
+    "@sl-design-system/grid": "^0.1.13",
+    "@sl-design-system/magister": "^0.1.13",
+    "@webcomponents/scoped-custom-element-registry": "^0.0.9",
+    "lit": "^3.2.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.3",
+    "vite": "^5.4.1"
+  }
+}
