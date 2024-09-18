@@ -7,8 +7,8 @@ import { ArrayDataSource } from '@sl-design-system/shared';
 import { html, LitElement, TemplateResult } from 'lit';
 import { customElement, query, state } from 'lit/decorators.js';
 import { repeat } from 'lit/directives/repeat.js';
-import { people, Person } from './data';
 import { columns } from './columns';
+import { people, Person } from './data';
 
 @customElement('my-grid')
 export class MyGrid extends ScopedElementsMixin(LitElement) {
@@ -47,11 +47,11 @@ export class MyGrid extends ScopedElementsMixin(LitElement) {
         }
       })}
       </sl-grid>
-  `
+        `
   }
 
   async #reorder(): Promise<void> {
-    this.columns = this.columns.slice().reverse();
+    this.columns = [...this.columns.slice().sort(() => Math.random() - 0.5)];
 
     this.dataSource?.update();
 

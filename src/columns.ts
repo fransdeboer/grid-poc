@@ -16,7 +16,7 @@ export let columns: Array<ColumnDefinition<Person>> = [{
     label: 'Profession',
     fixed: true,
     filter: {
-        mode: 'text'
+        mode: 'select'
     }
 }, {
     id: 'status',
