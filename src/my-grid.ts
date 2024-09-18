@@ -32,6 +32,12 @@ export class MyGrid extends ScopedElementsMixin(LitElement) {
   connectedCallback(): void {
     super.connectedCallback();
     this.dataSource = new ArrayDataSource(people as Person[]);
+    this.dataSource.addEventListener('sl-update', this.#onUpdate);
+  }
+
+  disconnectedCallback(): void {
+    super.disconnectedCallback();
+    this.dataSource?.removeEventListener('sl-update', this.#onUpdate);
   }
 
   render(): TemplateResult {
@@ -43,7 +49,7 @@ export class MyGrid extends ScopedElementsMixin(LitElement) {
         if (col.filter) {
           return html`<sl-grid-filter-column .id=${col.id} .path=${col.path} .mode=${col.filter.mode}></sl-grid-filter-column>`
         } else {
-          return html`<sl-grid-column .path=${col.path}></sl-grid-column>`
+          return html`<sl-grid-sort-column .path=${col.path}></sl-grid-sort-column>`
         }
       })}
       </sl-grid>
@@ -59,6 +65,10 @@ export class MyGrid extends ScopedElementsMixin(LitElement) {
     await this.grid.recalculateColumnWidths();
 
     // this.requestUpdate();
+  }
+
+  #onUpdate(): void {
+    console.log('sl-update fired');
   }
 }
 
