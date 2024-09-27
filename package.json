@@ -13,7 +13,7 @@
     "@oddbird/popover-polyfill": "^0.4.4",
     "@open-wc/scoped-elements": "^3.0.5",
     "@sl-design-system/button": "^1.0.2",
-    "@sl-design-system/grid": "^0.1.14",
+    "@sl-design-system/grid": "^0.1.15",
     "@sl-design-system/magister": "^0.1.13",
     "@webcomponents/scoped-custom-element-registry": "^0.0.9",
     "lit": "^3.2.0"

@@ -4407,7 +4407,7 @@ const peopleData = `[
       "subscriber": true,
       "membership": "Regular",
       "pictureUrl": "",
-      "profession": "Neurologist",
+      "profession": "This is a really long description of a profession",
       "birthday": "1984-06-06",
       "managerId": "15",
       "status": "Available",

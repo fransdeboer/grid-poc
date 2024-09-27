@@ -4,7 +4,7 @@ import { Button } from '@sl-design-system/button';
 import { Grid, GridColumn, GridFilterColumn, GridSelectionColumn, GridSortColumn } from '@sl-design-system/grid';
 import type { DataSource } from '@sl-design-system/shared';
 import { ArrayDataSource } from '@sl-design-system/shared';
-import { html, LitElement, TemplateResult } from 'lit';
+import { css, html, LitElement, TemplateResult } from 'lit';
 import { customElement, query, state } from 'lit/decorators.js';
 import { repeat } from 'lit/directives/repeat.js';
 import { columns } from './columns';
@@ -45,13 +45,14 @@ export class MyGrid extends ScopedElementsMixin(LitElement) {
       <sl-button @click=${this.#reorder} variant="primary">Reorder</sl-button>
 
       <sl-grid .dataSource=${this.dataSource}>
+        <sl-grid-selection-column></sl-grid-selection-column>
       ${repeat(this.columns, col => col.id, col => {
-        if (col.filter) {
-          return html`<sl-grid-filter-column .id=${col.id} .path=${col.path} .mode=${col.filter.mode}></sl-grid-filter-column>`
-        } else {
-          return html`<sl-grid-sort-column .path=${col.path}></sl-grid-sort-column>`
-        }
-      })}
+      if (col.filter) {
+        return html`<sl-grid-filter-column .id=${col.id} .path=${col.path} .mode=${col.filter.mode}></sl-grid-filter-column>`
+      } else {
+        return html`<sl-grid-sort-column .path=${col.path}></sl-grid-sort-column>`
+      }
+    })}
       </sl-grid>
         `
   }
@@ -70,6 +71,23 @@ export class MyGrid extends ScopedElementsMixin(LitElement) {
   #onUpdate(): void {
     console.log('sl-update fired');
   }
+
+  static styles = css`
+    sl-grid {
+      max-inline-size: 1199px;
+
+      // NTS: table had a display flex this is to overrule this display setting so that the table is displayed as a table
+      &::part(table) {
+        display: table;
+      }
+
+      // Fix for double scrollbar, scrollbar is now only visible on the grid container
+      &::part(tbody) {
+        border: 0;
+        overflow: hidden;
+      }
+    }
+  `;
 }
 
 declare global {
